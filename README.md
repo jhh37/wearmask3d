@@ -17,7 +17,7 @@ and store the file in the **models** directory.
 
 2. Install the requirements listed in **requirements.txt**, e.g. by typing
 ```
-pip install -r requirements.txt**
+pip install -r requirements.txt
 ```
 
 3. Run the demo code by running
