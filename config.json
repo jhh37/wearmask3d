@@ -1,0 +1,27 @@
+{
+  "srcPath": "./src",
+  "dstPath": "./dst",
+  "version":  "1.1",
+  "brightnessThreshold": 0.4,
+  "laplacianVarianceThreshold":  400,
+
+   "masks": [
+    {"name": "./masks/mask001.png", "shape": 1, "surface": 2, "weight": 30, "minSize": 0.1},
+    {"name": "./masks/mask002.png", "shape": 0, "surface": 3, "weight": 4, "minSize": 0.1},
+    {"name": "./masks/mask003.png", "shape": 0, "surface": 3, "weight": 4, "minSize": 0.1},
+    {"name": "./masks/mask004.png", "shape": 0, "surface": 3, "weight": 30, "minSize": 0.2},
+    {"name": "./masks/mask005.png", "shape": 0, "surface": 3, "weight": 9, "minSize": 0.1},
+    {"name": "./masks/mask006.png", "shape": 1, "surface": 3, "weight": 4, "minSize": 0.1},
+    {"name": "./masks/mask007.png", "shape": 0, "surface": 3, "weight": 30, "minSize": 0.1},
+    {"name": "./masks/mask008.png", "shape": 0, "surface": 3, "weight": 4, "minSize": 0.1},
+    {"name": "./masks/mask009.png", "shape": 0, "surface": 3, "weight": 6, "minSize": 0.1},
+    {"name": "./masks/mask010.png", "shape": 0, "surface": 3, "weight": 6, "minSize": 0.1},
+    {"name": "./masks/mask011.png", "shape": 1, "surface": 3, "weight": 9, "minSize": 0.1},
+    {"name": "./masks/mask012.png", "shape": 0, "surface": 4, "weight": 6, "minSize": 0.1},
+    {"name": "./masks/mask014.png", "shape": 0, "surface": 4, "weight": 4, "minSize": 0.1},
+    {"name": "./masks/mask015.png", "shape": 0, "surface": 3, "weight": 4, "minSize": 0.1},
+    {"name": "./masks/mask001_01.png", "shape": 1, "surface": 2, "weight": 9, "minSize": 0.1},
+    {"name": "./masks/mask004_01.png", "shape": 0, "surface": 3, "weight": 9, "minSize": 0.2},
+    {"name": "./masks/mask007_01.png", "shape": 0, "surface": 3, "weight": 9, "minSize": 0.1}
+    ]
+}

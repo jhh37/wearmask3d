@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# dst directory
+dst
+
+# tmp file
+mask08.png
+
 # C extensions
 *.so
 
