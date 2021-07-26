@@ -40,7 +40,7 @@ Destination path:  Save path of the mask-augmented output images
 
 Version: Version of the WearMask3D's mask augmentation method. You can choose "1.1" or "1.0". ("1.1" is recommended.)
 ```
-"version":  "1.1",
+"version":  "1.1"
 ```
 
 Brightness threshold: Pre-determined threshold value of the brightness of the input image. If an input image has a lower brightness than the threshold value, the rendered mask image becomes darker.
