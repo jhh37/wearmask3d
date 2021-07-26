@@ -1,5 +1,5 @@
 # WearMask3D
-
+![pipeline](/etc/pipeline.jpg)
 This repository contains code for fitting masks to face images in the wild by utilizing the 3D morphable model. 
 The code is provided without any warranty. If using this code, please cite our work as shown below.
 ```
@@ -30,6 +30,7 @@ Below is a list of tunable hyperparameters (coming soon).
 
 
 ## Masked Faces in the Wild (MFW-mini)
+![mfw](/etc/mfw_mini.png)
 You can find a list of images [here](https://docs.google.com/spreadsheets/d/1iooymtDPA8k2KUbB5K1jnuay4Eq-aRK4Mo4FbxbARqg/edit?usp=sharing)
 If you wish to obtain a cropped copy of the images, please email *kface-at-imrc.kist.re.kr*.
 
