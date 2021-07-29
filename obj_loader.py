@@ -1,3 +1,27 @@
+# WearMask3D
+# Copyright 2021 Hanjo Kim and Minsoo Kim. All rights reserved.
+# http://github.com/jhh37/wearmask3d
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+# Author: rlakswh@gmail.com      (Hanjo Kim)
+
 import pygame
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -5,7 +29,7 @@ from OpenGL.GLUT import *
 import numpy as np
 import time
 
-def MTL(filename):
+def MTL(filename, surf):
     contents = {}
     mtl = None
     for line in open(filename, "r"):
@@ -16,25 +40,26 @@ def MTL(filename):
             mtl = contents[values[1]] = {}
         elif mtl is None:
             raise (ValueError, "mtl file doesn't start with newmtl stmt")
-        elif values[0] == 'map_Kd':
-            mtl[values[0]] = values[1]
-            surf = pygame.image.load(os.path.dirname(filename) + '/' + mtl['map_Kd'])
-            image = pygame.image.tostring(surf, 'RGBA', 1)
-            ix, iy = surf.get_rect().size
-            texid = mtl['texture_Kd'] = glGenTextures(1)
-            glBindTexture(GL_TEXTURE_2D, texid)
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-                            GL_LINEAR)
-            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
-                            GL_LINEAR)
-            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ix, iy, 0, GL_RGBA,
-                         GL_UNSIGNED_BYTE, image)
         else:
             mtl[values[0]] = map(float, values[1:])
+
+    mtl[values[0]] = values[1]
+    # surf = pygame.image.load(os.path.dirname(filename) + '/' + mtl['map_Kd'])
+    image = pygame.image.tostring(surf, 'RGBA', 1)
+    ix, iy = surf.get_rect().size
+    texid = mtl['texture_Kd'] = glGenTextures(1)
+    glBindTexture(GL_TEXTURE_2D, texid)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                    GL_LINEAR)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+                    GL_LINEAR)
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ix, iy, 0, GL_RGBA,
+                 GL_UNSIGNED_BYTE, image)
+
     return contents
 
 
-class OBJ:
+class MaskSurfObj:
     def surface_normal(self, poly):
         n = [0.0, 0.0, 0.0]
 
@@ -50,7 +75,8 @@ class OBJ:
         return normalised
 
 
-    def __init__(self, filename=None, fileString=None, imgHeight=0, swapxy=False, swapyz=False, cw=False):
+    def __init__(self, filename=None, fileString=None,
+                 imgHeight=0, swapxy=False, swapyz=False, cw=False, mask_surf=None):
         self.vertices = []
         self.normals = []
         self.texcoords = []
@@ -88,7 +114,7 @@ class OBJ:
             elif values[0] in ('usemtl', 'usemat'):
                 material = values[1]
             elif values[0] == 'mtllib':
-                self.mtl = MTL(path + '/' + values[1])
+                self.mtl = MTL(path + '/' + values[1], mask_surf)
             elif values[0] == 'f':
                 face = []
                 texcoords = []

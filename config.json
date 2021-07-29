@@ -4,6 +4,9 @@
   "version":  "1.1",
   "brightnessThreshold": 0.4,
   "laplacianVarianceThreshold":  400,
+  "numProcs": 2,
+  "numGpus": 1,
+  "overwrite": true,
 
    "masks": [
     {"name": "./masks/mask001.png", "shape": 1, "surface": 2, "weight": 30, "minSize": 0.1},

@@ -3,8 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# dst directory
+# temp directories
 dst
+.idea
 
 # tmp file
 mask08.png
